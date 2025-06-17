@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance Request</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #0a0a0a;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            background: #1a1a2e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3);
+        }
+        h2 {
+            text-align: center;
+        }
+        .form-group {
+            margin: 10px 0;
+            text-align: left;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+        }
+        input, select {
+            width: 100px;
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+        }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-exit {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Maintenance Request</h2>
+        <form id="maintenanceForm">
+            <div class="form-group">
+                <label for="employeeid">Employee ID</label>
+                <input type="text" id="employeeid" name="employeeid">
+            </div>
+            <div class="form-group">
+                <label for="employeeName">Employee Name</label>
+                <input type="text" id="employeeName" name="employeeName">
+            </div>
+            <div class="form-group">
+                <label for="machineCategory"> Machine Category</label>
+                <input type="text" id="machineCategory" name="machineCategory">
+            </div>
+            <div class="form-group">
+                <label for="typesOfWork">Types of work</label>
+                <select name="typesOfWork" id="typesOfWork">
+                    <option value="Preventive">Preventive</option>
+                    <option value="Breakdown">Breakdown</option>
+                    <option value="Repair">Repair</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="problemCategory">problem category</label>
+                <select name="problemCategory" id="problemCategory">
+                    <option value="Mechanical">Mechanical</option>
+                    <option value="Electrical">Electrical</option>
+                    <option value="Software">Software</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="problemDetails">Problem Details</label>
+                <input type="text" id="problemDetails" name="problemDetails">
+            </div>
+            <div class="form-group">
+                <label for="requestDate"> Request Date</label>
+                <input type="date" id="requestDate" name="requestDate">
+            </div>
+            <div class="form-group">
+                <label for="requestTime">RequestTime</label>
+                <input type="time" id="requestTime" name="requestTime">
+            </div>
+            <button type="submit" class="btn">Submit</button>
+            <button type="button" class="btn btn-exit">exit</button>
+
+        </form>
+    </div>
+    
+</body>
+</html>

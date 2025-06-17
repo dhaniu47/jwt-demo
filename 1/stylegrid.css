@@ -1,0 +1,24 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    height: 100vh;
+    width: 100vw;
+}
+.container{
+    background-color: rgb(215, 182, 142);
+    border: 5px solid orange;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3,1fr);
+}
+.item{
+    height: 100px;
+    width: 100px;
+    background-color: black;
+    
+
+}
