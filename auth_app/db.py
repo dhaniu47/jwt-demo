@@ -1,6 +1,9 @@
 import os
 import sqlite3
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 DB_PATH = Path(os.getenv("AUTH_DB_PATH", Path(__file__).resolve().parent / "auth.db"))
 def get_connection():
     connection = sqlite3.connect(DB_PATH)
