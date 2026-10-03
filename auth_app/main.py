@@ -1,3 +1,4 @@
+from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -13,7 +14,14 @@ from .security import create_access_token, decode_access_token, hash_password, v
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-app = FastAPI(title="JWT Authentication API", version="1.0.0")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    init_db()
+    yield
+
+
+app = FastAPI(title="JWT Authentication API", version="1.0.0", lifespan=lifespan)
 app.mount("/frontend", StaticFiles(directory=BASE_DIR / "frontend"), name="frontend")
 bearer = HTTPBearer(auto_error=False)
 
@@ -26,11 +34,6 @@ class Credentials(BaseModel):
 class TokenResponse(BaseModel):
     access_token: str
     token_type: str
-
-
-@app.on_event("startup")
-def startup():
-    init_db()
 
 
 @app.get("/", include_in_schema=False)
