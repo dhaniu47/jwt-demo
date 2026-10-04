@@ -4,7 +4,7 @@ from pathlib import Path
 
 import jwt
 from fastapi import Depends, FastAPI, HTTPException, status
-from fastapi.responses import RedirectResponse
+from fastapi.responses import FileResponse
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
@@ -13,6 +13,7 @@ from .db import create_user, get_user_by_id, get_user_by_username, init_db
 from .security import create_access_token, decode_access_token, hash_password, verify_password
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+MAIN_FRONTEND = BASE_DIR / "Creating_Navigation_bar_project.html"
 
 
 @asynccontextmanager
@@ -38,7 +39,7 @@ class TokenResponse(BaseModel):
 
 @app.get("/", include_in_schema=False)
 def root():
-    return RedirectResponse(url="/frontend/index.html")
+    return FileResponse(MAIN_FRONTEND)
 
 
 @app.get("/health")
@@ -112,3 +113,8 @@ def me(user=Depends(get_current_user)):
 @app.get("/api/protected")
 def protected(user=Depends(get_current_user)):
     return {"message": "Authenticated request accepted for " + user["username"]}
+
+
+# Serve the repository's existing HTML/CSS/images after API routes.
+# This keeps the original application as the main visual page.
+app.mount("/", StaticFiles(directory=BASE_DIR, html=False), name="site")
